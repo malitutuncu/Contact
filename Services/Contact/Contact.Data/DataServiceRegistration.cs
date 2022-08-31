@@ -1,5 +1,6 @@
 ﻿using Contact.Data.Context;
 using Contact.Data.Repositories;
+using Contact.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,8 +21,8 @@ namespace Contact.Data
                                                      options.UseNpgsql(connectionString));
             //configuration.GetConnectionString("ContactAppConnectionString")
 
-            services.AddScoped<UserRepository, UserRepository>();
-            services.AddScoped<UserInformationRepository, UserInformationRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserInformationRepository, UserInformationRepository>();
 
             return services;
         }

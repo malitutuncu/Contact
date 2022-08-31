@@ -40,14 +40,21 @@ namespace Contact.Data.Core
             return Table.Find(keyValues);
         }
 
-        public IReadOnlyList<T> GetList(Expression<Func<T, bool>> predicate)
+        public List<T> GetList(Expression<Func<T, bool>> predicate = null)
         {
             return predicate == null ? Table.ToList() : Table.Where(predicate).ToList();
+        }
+
+        public IQueryable<T> ToQueryable()
+        {
+            return Table.AsQueryable();
         }
 
         public void Update(T entity)
         {
             _context.Update(entity);
         }
+
+
     }
 }

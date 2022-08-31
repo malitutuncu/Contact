@@ -3,7 +3,20 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contact.Data\Contact.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EntityDtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1" />
+    <PackageReference Include="Mapster" Version="7.3.0" />
+  </ItemGroup>
 
 </Project>
