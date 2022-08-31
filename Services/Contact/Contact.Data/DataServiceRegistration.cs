@@ -23,9 +23,10 @@ namespace Contact.Data
                                                      options.UseNpgsql(connectionString));
             //configuration.GetConnectionString("ContactAppConnectionString")
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserInformationRepository, UserInformationRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserReportRepository, UserReportRepository>();
 
             return services;
         }
