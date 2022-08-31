@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Business", "Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Data", "Services\Contact\Contact.Data\Contact.Data.csproj", "{8B83F88C-822C-405E-A8F8-2921FF40D775}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Global", "Common\Common.Global\Common.Global.csproj", "{0B7FA4AD-D0BB-49C0-9F8A-34B65CFB2AEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8B83F88C-822C-405E-A8F8-2921FF40D775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B83F88C-822C-405E-A8F8-2921FF40D775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B83F88C-822C-405E-A8F8-2921FF40D775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7FA4AD-D0BB-49C0-9F8A-34B65CFB2AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7FA4AD-D0BB-49C0-9F8A-34B65CFB2AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7FA4AD-D0BB-49C0-9F8A-34B65CFB2AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7FA4AD-D0BB-49C0-9F8A-34B65CFB2AEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 		{F5DA776A-150B-4213-916A-9534B948CEB3} = {8A655D5D-049C-4C47-B570-3DA0CF34282C}
 		{9674CF61-09CE-4FFD-9D9B-65909E0011C7} = {8A655D5D-049C-4C47-B570-3DA0CF34282C}
 		{8B83F88C-822C-405E-A8F8-2921FF40D775} = {8A655D5D-049C-4C47-B570-3DA0CF34282C}
+		{0B7FA4AD-D0BB-49C0-9F8A-34B65CFB2AEE} = {277AA506-A5FB-4261-85A6-D831791038B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CFFAF7A-F63C-4B7A-99FE-B1B380BD566D}
