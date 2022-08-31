@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using Contact.Business.Interfaces;
+using Contact.Business.Services.UserServices;
+using Contact.Business.Services.UserInformationServices;
 
 namespace Contact.Business
 {
@@ -16,6 +19,9 @@ namespace Contact.Business
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddFluentValidationAutoValidation();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserInformationService, UserInformationService>();
 
             return services;
         }

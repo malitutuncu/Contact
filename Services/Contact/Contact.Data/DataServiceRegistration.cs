@@ -1,4 +1,6 @@
-﻿using Contact.Data.Context;
+﻿using Common.Global.DataService;
+using Contact.Data.Context;
+using Contact.Data.Core;
 using Contact.Data.Repositories;
 using Contact.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,7 @@ namespace Contact.Data
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserInformationRepository, UserInformationRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

@@ -9,13 +9,13 @@ namespace Common.Global.API
 {
     [ApiController]
     [Produces("application/json")]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class BaseController : Controller
     {
         [NonAction]
         public IActionResult Success(object responseObject = null)
         {
-            return StatusCode(200, responseObject);
+            return responseObject == null ? Ok() : Ok(responseObject);
         }
     }
 }

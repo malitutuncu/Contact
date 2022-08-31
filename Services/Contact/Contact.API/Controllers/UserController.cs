@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Contact.API.Controllers
 {
+    
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
@@ -27,7 +28,7 @@ namespace Contact.API.Controllers
             return Success(users);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Add(AddUserDto addDto)
         {
             _userService.Add(addDto);
