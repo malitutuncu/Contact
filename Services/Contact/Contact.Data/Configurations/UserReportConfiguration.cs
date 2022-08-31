@@ -19,6 +19,8 @@ namespace Contact.Data.Configurations
             builder.Property(x => x.ReportStatus).HasColumnName("report_status").IsRequired();
             builder.Property(x => x.ExcelPath).HasColumnName("excel_path").IsRequired();
             builder.ToTable("user_reports");
+
+            builder.HasOne(x => x.User).WithMany(x => x.Reports).HasForeignKey(x => x.UserId);
         }
     }
 }

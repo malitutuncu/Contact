@@ -15,4 +15,8 @@
     <PackageReference Include="Mapster" Version="7.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\UserReportServices\Dtos\" />
+  </ItemGroup>
+
 </Project>

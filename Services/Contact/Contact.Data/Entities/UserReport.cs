@@ -13,5 +13,9 @@ namespace Contact.Data.Entities
         public DateTime RequestedDate { get; set; } = new DateTime();
         public ReportStatus ReportStatus { get; set; } = ReportStatus.Preparing;
         public string ExcelPath { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

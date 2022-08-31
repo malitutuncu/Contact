@@ -14,5 +14,7 @@ namespace Contact.Data.Entities
         public string CompanyName { get; set; }
 
         public virtual ICollection<UserInformation> Informations { get; set; }
+
+        public virtual ICollection<UserReport> Reports { get; set; }
     }
 }
