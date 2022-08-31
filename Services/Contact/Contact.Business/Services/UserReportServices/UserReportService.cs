@@ -1,4 +1,5 @@
-﻿using Common.Global.DataService;
+﻿using Common.Contracts.Report;
+using Common.Global.DataService;
 using Contact.Business.Interfaces;
 using Contact.Business.Services.UserServices.Dtos;
 using Contact.Data.Entities;
@@ -24,7 +25,7 @@ namespace Contact.Business.Services.UserReportServices
             _unitOfWork = unitOfWork;
         }
 
-        public void RequestReport(Guid userId)
+        public async Task RequestReportAsync(Guid userId)
         {
             var entity = new UserReport
             {
@@ -32,6 +33,8 @@ namespace Contact.Business.Services.UserReportServices
             };
             _userReportRepository.Add(entity);
             _unitOfWork.Commit();
+
+            await CreateReportPublisher.PublishAsync(entity.Id);
         }
     }
 }

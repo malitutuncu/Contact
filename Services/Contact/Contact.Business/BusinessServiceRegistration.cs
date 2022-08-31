@@ -11,6 +11,7 @@ using FluentValidation.AspNetCore;
 using Contact.Business.Interfaces;
 using Contact.Business.Services.UserServices;
 using Contact.Business.Services.UserInformationServices;
+using Contact.Business.Services.UserReportServices;
 
 namespace Contact.Business
 {
@@ -22,7 +23,7 @@ namespace Contact.Business
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserInformationService, UserInformationService>();
-
+            services.AddScoped<IUserReportService, UserReportService>();
             return services;
         }
     }
