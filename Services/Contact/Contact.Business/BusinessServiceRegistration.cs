@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 
 namespace Contact.Business
 {
@@ -14,10 +15,10 @@ namespace Contact.Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-            
-    
+            services.AddFluentValidationAutoValidation();
+
             return services;
         }
     }
 }
-}
+
