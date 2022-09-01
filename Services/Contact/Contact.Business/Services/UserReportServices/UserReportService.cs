@@ -8,33 +8,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Contact.Business.Services.UserReportServices
 {
     public class UserReportService : IUserReportService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IRepository<ReportOutboxMessage> _reportOutboxRepository;
         private readonly IUserReportRepository _userReportRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserReportService(IUserRepository userRepository, IUserReportRepository userReportRepository, IUnitOfWork unitOfWork)
+
+        public UserReportService(IRepository<ReportOutboxMessage> reportOutboxRepository, IUserReportRepository userReportRepository, IUnitOfWork unitOfWork)
         {
             _userReportRepository = userReportRepository;
-            _userRepository = userRepository;
+            _reportOutboxRepository = reportOutboxRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task RequestReportAsync(Guid userId)
+        public void RequestReportAsync(Guid userId)
         {
             var entity = new UserReport
             {
                 UserId = userId
             };
             _userReportRepository.Add(entity);
-            _unitOfWork.Commit();
 
-            await CreateReportPublisher.PublishAsync(entity.Id);
+            var payload = JsonSerializer.Serialize(new CreateReportMessage(entity.Id));
+
+
+            var outboxMessage = new ReportOutboxMessage
+            {
+                Type = nameof(CreateReportMessage),
+                Payload = payload
+            };
+
+            _reportOutboxRepository.Add(outboxMessage);
+
+            _unitOfWork.Commit();
         }
     }
 }

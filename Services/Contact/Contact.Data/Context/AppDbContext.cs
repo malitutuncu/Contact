@@ -12,10 +12,12 @@ namespace Contact.Data.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+           
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserInformation> UserInformations { get; set; }
+        public DbSet<ReportOutboxMessage> ReportOutboxMessage { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

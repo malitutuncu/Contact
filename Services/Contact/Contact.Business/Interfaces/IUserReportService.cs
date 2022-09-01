@@ -8,6 +8,6 @@ namespace Contact.Business.Interfaces
 {
     public interface IUserReportService
     {
-        Task RequestReportAsync(Guid userId);
+        void RequestReportAsync(Guid userId);
     }
 }

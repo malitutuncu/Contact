@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Contact.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220831193350_userReportAdded")]
-    partial class userReportAdded
+    [Migration("20220831194545_UserReportexcelpath")]
+    partial class UserReportexcelpath
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,7 +92,6 @@ namespace Contact.Data.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("ExcelPath")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("excel_path");
 

@@ -14,9 +14,9 @@ namespace Contact.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> RequestReport(Guid userId)
+        public IActionResult RequestReport(Guid userId)
         {
-            await _userReportService.RequestReportAsync(userId);
+            _userReportService.RequestReportAsync(userId);
             return Success();
         }
     }

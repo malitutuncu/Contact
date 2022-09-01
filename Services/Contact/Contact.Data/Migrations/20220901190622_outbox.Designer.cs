@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Contact.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220831101058_initial")]
-    partial class initial
+    [Migration("20220901190622_outbox")]
+    partial class outbox
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,32 @@ namespace Contact.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Contact.Data.Entities.ReportOutboxMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("OccuredOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("occured_on");
+
+                    b.Property<string>("Payload")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("payload");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("report_outbox_table", (string)null);
+                });
 
             modelBuilder.Entity("Contact.Data.Entities.User", b =>
                 {
@@ -84,6 +110,35 @@ namespace Contact.Data.Migrations
                     b.ToTable("user_informations", (string)null);
                 });
 
+            modelBuilder.Entity("Contact.Data.Entities.UserReport", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ExcelPath")
+                        .HasColumnType("text")
+                        .HasColumnName("excel_path");
+
+                    b.Property<int>("ReportStatus")
+                        .HasColumnType("integer")
+                        .HasColumnName("report_status");
+
+                    b.Property<DateTime>("RequestedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("requested_date");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("user_reports", (string)null);
+                });
+
             modelBuilder.Entity("Contact.Data.Entities.UserInformation", b =>
                 {
                     b.HasOne("Contact.Data.Entities.User", "User")
@@ -95,9 +150,22 @@ namespace Contact.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Contact.Data.Entities.UserReport", b =>
+                {
+                    b.HasOne("Contact.Data.Entities.User", "User")
+                        .WithMany("Reports")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Contact.Data.Entities.User", b =>
                 {
                     b.Navigation("Informations");
+
+                    b.Navigation("Reports");
                 });
 #pragma warning restore 612, 618
         }

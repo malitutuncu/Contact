@@ -1,6 +1,7 @@
 using Common.Global.API.Middlewares;
 using Contact.Business;
 using Contact.Data;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,11 @@ var services = builder.Services;
 
 services.AddDataServices();
 services.AddBusinessServices();
+
+//services.AddMassTransit(x =>
+//{
+//    x.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
+//});
 
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

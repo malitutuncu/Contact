@@ -10,7 +10,7 @@ namespace Contact.Data.Entities
     public class UserReport
     {
         public Guid Id { get; set; }
-        public DateTime RequestedDate { get; set; } = new DateTime();
+        public DateTime RequestedDate { get; set; } = DateTime.Now;
         public ReportStatus ReportStatus { get; set; } = ReportStatus.Preparing;
         public string ExcelPath { get; set; }
 

@@ -20,13 +20,20 @@ namespace Contact.Data
             const string connectionString = "Server=127.0.0.1;Port=5433;Database=ContactDB;User Id=postgres;Password=123456;";
 
             services.AddDbContext<AppDbContext>(options =>
-                                                     options.UseNpgsql(connectionString));
+            {
+                options.UseNpgsql(connectionString);
+                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            });
+
+
             //configuration.GetConnectionString("ContactAppConnectionString")
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserInformationRepository, UserInformationRepository>();
             services.AddScoped<IUserReportRepository, UserReportRepository>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             return services;
         }
