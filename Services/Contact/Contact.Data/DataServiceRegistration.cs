@@ -1,4 +1,5 @@
-﻿using Common.Global.DataService;
+﻿using Common.Global.Core;
+using Common.Global.DataService;
 using Contact.Data.Context;
 using Contact.Data.Core;
 using Contact.Data.Repositories;
@@ -17,11 +18,11 @@ namespace Contact.Data
     {
         public static IServiceCollection AddDataServices(this IServiceCollection services)
         {
-            const string connectionString = "Server=127.0.0.1;Port=5433;Database=ContactDB;User Id=postgres;Password=123456;";
+            
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseNpgsql(connectionString);
+                options.UseNpgsql(CoreConstants.contactDBconnectionString);
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             });
 

@@ -1,4 +1,5 @@
-﻿using Contact.Data.Entities;
+﻿using Common.Contracts.Report;
+using Contact.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

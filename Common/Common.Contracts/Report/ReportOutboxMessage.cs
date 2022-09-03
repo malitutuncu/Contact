@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contact.Data.Entities
+namespace Common.Contracts.Report
 {
     public class ReportOutboxMessage
     {
