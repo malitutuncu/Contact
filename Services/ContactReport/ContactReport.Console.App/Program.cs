@@ -20,8 +20,6 @@ var serviceProvider = serviceCollection
                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
            }, ServiceLifetime.Transient)
 
-             .AddTransient<IUnitOfWork, UnitOfWork>()
-             .AddTransient(typeof(IRepository<>), typeof(GenericRepository<>))
        .BuildServiceProvider();
 
 serviceCollection.AddScoped<CreateReportConsumer, CreateReportConsumer>();
@@ -34,9 +32,8 @@ var provider = serviceScope.ServiceProvider;
 var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
 {
     cfg.ReceiveEndpoint("create-report", e =>
-    {
-        //e.Consumer<CreateReportConsumer>(serviceProvider);
-        e.Consumer(() => new CreateReportConsumer(serviceProvider.GetRequiredService<IRepository<UserReport>>(), serviceProvider.GetRequiredService<IUnitOfWork>()));
+    {       
+        e.Consumer(() => new CreateReportConsumer(serviceProvider.GetRequiredService<AppDbContext>()));
     });
 });
 

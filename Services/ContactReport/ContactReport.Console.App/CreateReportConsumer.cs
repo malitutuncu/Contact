@@ -16,14 +16,12 @@ namespace ContactReport.Console.App
 {
     public class CreateReportConsumer : IConsumer<CreateReportMessage>
     {
-        private readonly IRepository<UserReport> _userReportRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly AppDbContext _context;
    
 
-        public CreateReportConsumer(IRepository<UserReport> userReportRepository, IUnitOfWork unitOfWork)
+        public CreateReportConsumer(AppDbContext context)
         {
-            _userReportRepository = userReportRepository;
-            _unitOfWork = unitOfWork;
+            _context = context;
         }
 
         public Task Consume(ConsumeContext<CreateReportMessage> context)
@@ -31,19 +29,18 @@ namespace ContactReport.Console.App
             
             var message = context.Message;
 
-
+            var userReport = _context.UserReports.FirstOrDefault(x => x.Id == message.ReportId);
             
-            var userReport = _userReportRepository.Get(x => x.Id == message.ReportId);
+            if(userReport != null)
+            {
+                userReport.ReportStatus = ReportStatus.Completed;
+                userReport.ExcelPath = $"{userReport.Id} excel path completed";
+                _context.SaveChanges();
 
+                System.Console.WriteLine($"completed report {message.ReportId}");
+                string jsonString = JsonSerializer.Serialize(context.Message);
+            }
 
-            userReport.ReportStatus = ReportStatus.Completed;
-            userReport.ExcelPath = $"{userReport.Id} excel path completed";
-
-            _userReportRepository.Update(userReport);
-            _unitOfWork.Commit();
-
-            System.Console.WriteLine($"completed report {message.ReportId}");
-            string jsonString = JsonSerializer.Serialize(context.Message);
             return Task.CompletedTask;
         }
     }

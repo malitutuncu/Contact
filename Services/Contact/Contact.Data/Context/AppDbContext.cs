@@ -19,6 +19,7 @@ namespace Contact.Data.Context
         public DbSet<User> Users { get; set; }
         public DbSet<UserInformation> UserInformations { get; set; }
         public DbSet<ReportOutboxMessage> ReportOutboxMessage { get; set; }
+        public DbSet<UserReport> UserReports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
