@@ -10,23 +10,15 @@ dotnet ef database update --startup-project "../Contact.API/Contact.API.csproj"
 
 calıştırılmalıdır.
 
-
-
 Bir kişi rapor istediğinde kuyruğa eklerken verinin kaybolması engellenmek amaçlı outbox pattern kullanıldı
-
-
 
 Contact.API -> Contact api
 ContactReport.Outbox.Service -> Publisher
 ContactReport.Console.App -> Subscriber 
 
-
-
 Projede 
 
-RabbitMQ, Masstransit, Quartz.Net kullanıldı. 
-
-
+RabbitMQ, Masstransit, Quartz.Net, Dapper kullanıldı. 
 
 1. ContactReport.Outbox.Service konsol uygulaması çalıştırılmalıdır.
 
