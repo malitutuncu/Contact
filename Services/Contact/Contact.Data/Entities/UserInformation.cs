@@ -1,4 +1,5 @@
-﻿using Contact.Data.Enums;
+﻿using Contact.Data.Core;
+using Contact.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Contact.Data.Entities
 {
-    public class UserInformation
+    public class UserInformation : IEntity
     {
         public Guid Id { get; set; }
         public InformationType InformationType { get; set; }

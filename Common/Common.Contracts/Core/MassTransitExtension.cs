@@ -10,13 +10,14 @@ namespace Common.Contracts.Core
 {
     public static class MassTransitExtension
     {
+        public const string uri = "amqp://guest:guest@localhost:5672";
         public static IServiceCollection AddMassTransitConfiguration(this IServiceCollection services)
         {
             services.AddMassTransit(configurator =>
             {
                 configurator.UsingRabbitMq((context, _configurator) =>
                 {
-                    _configurator.Host(new Uri(RabbitMQConstants.Uri));
+                    _configurator.Host(new Uri(uri));
 
                 });
             });

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-ContactReport.Outbox.Service-3BEF7BA2-0C2B-4368-B609-DA41E63AF010</UserSecretsId>
   </PropertyGroup>
@@ -21,5 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.Contracts\Common.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.Global\Common.Global.csproj" />
+    <ProjectReference Include="..\..\Contact\Contact.Data\Contact.Data.csproj" />
   </ItemGroup>
 </Project>

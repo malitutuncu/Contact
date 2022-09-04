@@ -1,4 +1,5 @@
 ﻿using Common.Contracts.Report;
+using Contact.Data.Entities;
 using ContactReport.Outbox.Service.Core;
 using MassTransit;
 using MassTransit.Transports;
